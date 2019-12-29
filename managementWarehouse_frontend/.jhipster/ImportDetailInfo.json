@@ -1,0 +1,45 @@
+{
+    "name": "ImportDetailInfo",
+    "fields": [
+        {
+            "fieldName": "productName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "quantityImport",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "importDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "priceImport",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "importInfo",
+            "otherEntityRelationshipName": "importDetailInfo"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "importDetailInfo",
+            "relationshipName": "product",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191228100501",
+    "entityTableName": "import_detail_info",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

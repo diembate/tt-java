@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.ncc.java"
+    },
+    "jhipsterVersion": "6.6.0",
+    "applicationType": "monolith",
+    "baseName": "managementWarehouse",
+    "packageName": "com.ncc.java",
+    "packageFolder": "com/ncc/java",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MmFkN2ViMDhmMWVlODhjMjRlODdkOTZhMDk5NWUzOWZhNDk2Y2ZkMzYwOThhODkzZjVhNzk1ZjdiMmUzMTJiNWI2YWE1MTdkODY5NTVlYjk5MjdhMzMzNWY4NTE5MzM4YjZhNDc3MzI2ZWIyMmNjOGE4ODdlMDZlOWVhZjBkNjU=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "lumen",
+    "clientThemeVariant": "light",
+    "creationTimestamp": 1577520770850,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

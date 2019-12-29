@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="orderDetailInfo">
+            <h2><span>Order Detail Info</span> {{orderDetailInfo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Product Name</span></dt>
+                <dd>
+                    <span>{{orderDetailInfo.productName}}</span>
+                </dd>
+                <dt><span>Price Product</span></dt>
+                <dd>
+                    <span>{{orderDetailInfo.priceProduct}}</span>
+                </dd>
+                <dt><span>Quantity Order</span></dt>
+                <dd>
+                    <span>{{orderDetailInfo.quantityOrder}}</span>
+                </dd>
+                <dt><span>Amount</span></dt>
+                <dd>
+                    <span>{{orderDetailInfo.amount}}</span>
+                </dd>
+                <dt><span>Order Date</span></dt>
+                <dd>
+                    <span>{{orderDetailInfo.orderDate}}</span>
+                </dd>
+                <dt><span>Order Info</span></dt>
+                <dd>
+                    <div *ngIf="orderDetailInfo.orderInfo">
+                        <a [routerLink]="['/order-info', orderDetailInfo.orderInfo?.id, 'view']">{{orderDetailInfo.orderInfo?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Product</span></dt>
+                <dd>
+                    <div *ngIf="orderDetailInfo.product">
+                        <a [routerLink]="['/product', orderDetailInfo.product?.id, 'view']">{{orderDetailInfo.product?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order-detail-info', orderDetailInfo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

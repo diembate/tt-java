@@ -1,0 +1,35 @@
+{
+    "name": "ImportInfo",
+    "fields": [
+        {
+            "fieldName": "deliverPerson",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "supplier",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cost",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "importDetailInfo",
+            "otherEntityRelationshipName": "importInfo",
+            "relationshipName": "importDetailInfo"
+        }
+    ],
+    "changelogDate": "20191228081641",
+    "entityTableName": "import_info",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

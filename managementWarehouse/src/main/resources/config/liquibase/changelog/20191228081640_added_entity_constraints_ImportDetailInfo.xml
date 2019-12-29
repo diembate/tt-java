@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ImportDetailInfo.
+    -->
+    <changeSet id="20191228081640-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="import_info_id"
+                                 baseTableName="import_detail_info"
+                                 constraintName="fk_import_detail_info_import_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="import_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="import_detail_info"
+                                 constraintName="fk_import_detail_info_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+
+    </changeSet>
+</databaseChangeLog>

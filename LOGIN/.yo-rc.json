@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.ncc.java"
+    },
+    "jhipsterVersion": "6.5.1",
+    "applicationType": "monolith",
+    "baseName": "bookApp",
+    "packageName": "com.ncc.java",
+    "packageFolder": "com/ncc/java",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YTU2MGRlMTE0MjQ2MDAyMjFmOTFlYTg5N2VkMGZiZWZjZTlkOWM3MTAzMTMyOWUwYTFkMWE3NjA1MTZlYWI0Yzc2ZTA4M2Q3Yzk1OGRhOWVkYmVmYzQ3ZTZhNmY2NGNlYjMzMDhiNTVlYTU4OTY4NjMxMWU5ODg1YzNkMjQyZmM=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

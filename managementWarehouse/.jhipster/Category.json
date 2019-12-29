@@ -1,0 +1,27 @@
+{
+    "name": "Category",
+    "fields": [
+        {
+            "fieldName": "cateName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "product"
+        }
+    ],
+    "changelogDate": "20191228081637",
+    "entityTableName": "category",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

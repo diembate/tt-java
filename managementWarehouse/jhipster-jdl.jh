@@ -1,0 +1,103 @@
+entity Brand {
+	brandName String
+    
+}
+
+
+
+entity Category {
+	cateName String
+   
+}
+
+
+entity Product {	
+productName String
+ priceProduct BigDecimal
+ quantityProduct Integer
+    
+}
+
+
+entity Customer {
+
+	name String 
+    birthday LocalDate
+    adress String
+    email String
+    phoneNumber String
+}
+
+entity ImportDetailInfo {
+productName String
+	quantityImport Integer
+    importDate LocalDate
+    priceImport BigDecimal
+  
+}
+entity ImportInfo {
+deliverPerson String
+supplier String
+cost BigDecimal
+  
+}
+entity OrderDetailInfo {
+productName String
+priceProduct BigDecimal
+	quantityOrder Integer
+    amount BigDecimal
+    orderDate LocalDate
+  
+}
+entity OrderInfo {
+    amount BigDecimal
+    orderDate LocalDate
+}
+
+
+
+
+
+
+// defining multiple OneToMany relationships with comments
+
+
+relationship OneToMany{
+ 
+
+Category{product} to Product
+
+Brand{product} to Product
+Customer to OrderInfo{customer}
+
+
+
+}
+relationship ManyToOne{
+ImportDetailInfo to ImportInfo{importDetailInfo}
+OrderDetailInfo to OrderInfo{orderDetailInfo}
+ ImportDetailInfo{product} to Product
+ OrderDetailInfo{product} to Product
+ 
+
+}
+
+
+
+
+
+
+
+service all with serviceImpl except Product
+
+
+// defining multiple oneToOne relationships
+
+
+// Set pagination options
+
+
+// defining multiple oneToOne relationships
+
+
+// Set pagination options
