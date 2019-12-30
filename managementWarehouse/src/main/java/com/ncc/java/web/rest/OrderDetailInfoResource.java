@@ -65,6 +65,7 @@ public class OrderDetailInfoResource {
 
         OrderDetailInfo result = orderDetailInfoService.save(orderDetailInfo);
         productService.save(product);
+
         return ResponseEntity.created(new URI("/api/order-detail-infos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);

@@ -57,13 +57,11 @@ public class ImportDetailInfoResource {
         }
 
         Product product = importDetailInfo.getProduct();
-
         importDetailInfo.setProductName(product.getProductName());
-
-
 
         ImportDetailInfo result = importDetailInfoService.save(importDetailInfo);
         productService.importDetailBill(result);
+
         return ResponseEntity.created(new URI("/api/import-detail-infos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
