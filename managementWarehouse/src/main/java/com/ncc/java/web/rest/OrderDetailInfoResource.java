@@ -1,5 +1,6 @@
 package com.ncc.java.web.rest;
 
+import com.ncc.java.domain.ImportDetailInfo;
 import com.ncc.java.domain.OrderDetailInfo;
 import com.ncc.java.domain.Product;
 import com.ncc.java.service.OrderDetailInfoService;
@@ -64,7 +65,9 @@ public class OrderDetailInfoResource {
         orderDetailInfo.setAmount(itemCost);
 
         OrderDetailInfo result = orderDetailInfoService.save(orderDetailInfo);
-        productService.save(product);
+        productService.orderDetailBill(result);
+
+
 
         return ResponseEntity.created(new URI("/api/order-detail-infos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
