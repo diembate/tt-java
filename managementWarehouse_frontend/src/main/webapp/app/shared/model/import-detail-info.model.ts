@@ -9,7 +9,7 @@ export interface IImportDetailInfo {
   importDate?: Moment;
   priceImport?: number;
   importInfo?: IImportInfo;
-  product?: IProduct;
+  productId?: IProduct;
 }
 
 export class ImportDetailInfo implements IImportDetailInfo {
@@ -20,6 +20,6 @@ export class ImportDetailInfo implements IImportDetailInfo {
     public importDate?: Moment,
     public priceImport?: number,
     public importInfo?: IImportInfo,
-    public product?: IProduct
+    public productId?: IProduct
   ) {}
 }

@@ -27,30 +27,7 @@
                             formControlName="quantityOrder" />
                     </div>
 
-
-
-                    <!-- <div class="form-group">
-                        <label class="form-control-label"
-                            jhiTranslate="managementWarehouseApp.orderDetailInfo.orderInfo" for="field_orderInfo">Order
-                            Info</label>
-                        <select class="form-control" id="field_orderInfo" name="orderInfo" formControlName="orderInfo">
-                            <option [ngValue]="null"></option>
-                            <option
-                                [ngValue]="orderInfoOption.id === editForm.get('orderInfo')!.value?.id ? editForm.get('orderInfo')!.value : orderInfoOption"
-                                *ngFor="let orderInfoOption of orderinfos; trackBy: trackById">{{orderInfoOption.id}}
-                            </option>
-                        </select>
-                    </div> -->
-                    <div class="form-group">
-                        <label class="form-control-label" jhiTranslate="managementWarehouseApp.orderDetailInfo.product"
-                            for="field_product">Product</label>
-                        <select class="form-control" id="field_product" name="product" formControlName="product">
-                            <option [ngValue]="null"></option>
-                            <option
-                                [ngValue]="productOption.id === editForm.get('product')!.value?.id ? editForm.get('product')!.value : productOption"
-                                *ngFor="let productOption of products; trackBy: trackById">{{productOption.id}}</option>
-                        </select>
-                    </div>
+    
                 </div>
                 <div>
                     <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">

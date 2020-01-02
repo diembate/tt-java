@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
@@ -20,9 +20,15 @@ import { OrderDetailInfoUpdateComponent } from './order/order-detail-info-update
 export class ProductComponent implements OnInit, OnDestroy {
   products?: IProduct[];
   eventSubscriber?: Subscription;
-  id: any;
 
-  constructor(protected productService: ProductService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
+  constructor(
+    protected productService: ProductService,
+    protected eventManager: JhiEventManager, 
+    protected modalService: NgbModal, 
+   
+    ) {
+
+    }
 
   loadAll(): void {
     this.productService.query().subscribe((res: HttpResponse<IProduct[]>) => {
@@ -33,6 +39,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInProducts();
+ 
   }
 
   ngOnDestroy(): void {
@@ -55,12 +62,18 @@ export class ProductComponent implements OnInit, OnDestroy {
     const modalRef = this.modalService.open(ProductDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.product = product;
   }
-  import():void {
-    this.modalService.open(ImportDetailInfoUpdateComponent);
-  
+ 
+ 
+  import(product: IProduct):void {
+    const modalRef =this.modalService.open(ImportDetailInfoUpdateComponent);
+    modalRef.componentInstance.id = product.id;
+    // modalRef.componentInstance.passEntry.subscribe((receivedEntry: any) => {
+    //   console.log(receivedEntry);
+    //   })
+ 
   }
-  order():void {
-    this.modalService.open(OrderDetailInfoUpdateComponent);
-  
+  order(product: IProduct):void  {
+    const modalRef = this.modalService.open(OrderDetailInfoUpdateComponent);
+    modalRef.componentInstance.id = product.id;
   }
 }

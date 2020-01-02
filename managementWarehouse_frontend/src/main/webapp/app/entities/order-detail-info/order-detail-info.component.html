@@ -1,12 +1,12 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="managementWarehouseApp.orderDetailInfo.home.title">Order Detail Infos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order-detail-info" [routerLink]="['/order-detail-info/new']">
+        <!-- <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order-detail-info" [routerLink]="['/order-detail-info/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="managementWarehouseApp.orderDetailInfo.home.createLabel">
             Create a new Order Detail Info
             </span>
-        </button>
+        </button> -->
     </h2>
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
@@ -46,6 +46,8 @@
                     <div *ngIf="orderDetailInfo.product">
                         <a [routerLink]="['/product', orderDetailInfo.product?.id, 'view' ]" >{{orderDetailInfo.product?.id}}</a>
                     </div>
+
+                   
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

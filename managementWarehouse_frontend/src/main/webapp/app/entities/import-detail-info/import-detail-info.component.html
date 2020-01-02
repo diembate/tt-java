@@ -1,12 +1,12 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="managementWarehouseApp.importDetailInfo.home.title">Import Detail Infos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-import-detail-info" [routerLink]="['/import-detail-info/new']">
+        <!-- <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-import-detail-info" [routerLink]="['/import-detail-info/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="managementWarehouseApp.importDetailInfo.home.createLabel">
             Create a new Import Detail Info
             </span>
-        </button>
+        </button> -->
     </h2>
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
@@ -36,13 +36,15 @@
                 <td>{{importDetailInfo.importDate | date:'mediumDate'}}</td>
                 <td>{{importDetailInfo.priceImport}}</td>
                 <td>
+                  
                     <div *ngIf="importDetailInfo.importInfo">
-                        <a [routerLink]="['/import-info', importDetailInfo.importInfo?.id, 'view' ]" >{{importDetailInfo.importInfo?.id}}</a>
+                        <a   [routerLink]="['/import-info', importDetailInfo.importInfo?.id, 'view' ]" >{{importDetailInfo.importInfo?.id}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="importDetailInfo.product">
-                        <a [routerLink]="['/product', importDetailInfo.product?.id, 'view' ]" >{{importDetailInfo.product?.id}}</a>
+                        <a [routerLink]="['/product', importDetailInfo.product?.id, 'view' ]" > {{importDetailInfo.product?.id}}</a>
+                   
                     </div>
                 </td>
                 <td class="text-right">

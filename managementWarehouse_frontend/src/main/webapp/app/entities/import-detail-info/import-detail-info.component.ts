@@ -13,8 +13,10 @@ import { ImportDetailInfoDeleteDialogComponent } from './import-detail-info-dele
   templateUrl: './import-detail-info.component.html'
 })
 export class ImportDetailInfoComponent implements OnInit, OnDestroy {
+  [x: string]: any;
   importDetailInfos?: IImportDetailInfo[];
   eventSubscriber?: Subscription;
+
 
   constructor(
     protected importDetailInfoService: ImportDetailInfoService,
@@ -27,7 +29,10 @@ export class ImportDetailInfoComponent implements OnInit, OnDestroy {
       this.importDetailInfos = res.body ? res.body : [];
     });
   }
-
+ 
+  user(user: any) {
+    throw new Error("Method not implemented.");
+  }
   ngOnInit(): void {
     this.loadAll();
     this.registerChangeInImportDetailInfos();

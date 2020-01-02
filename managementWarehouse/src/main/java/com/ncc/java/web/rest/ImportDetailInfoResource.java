@@ -2,8 +2,11 @@ package com.ncc.java.web.rest;
 
 import com.ncc.java.domain.ImportDetailInfo;
 import com.ncc.java.domain.Product;
+import com.ncc.java.repository.ProductRepository;
 import com.ncc.java.service.ImportDetailInfoService;
 import com.ncc.java.service.ProductService;
+import com.ncc.java.service.dto.ImportDetailInfoDTO;
+import com.ncc.java.service.mapper.ImportDetailInfoMapper;
 import com.ncc.java.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -27,8 +30,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class ImportDetailInfoResource {
-@Autowired
+    @Autowired
     ProductService productService;
+
+    @Autowired
+    ImportDetailInfoMapper importDetailInfoMapper;
+
+    @Autowired
+    ProductRepository productRepository;
+
     private final Logger log = LoggerFactory.getLogger(ImportDetailInfoResource.class);
 
     private static final String ENTITY_NAME = "importDetailInfo";
@@ -42,19 +52,26 @@ public class ImportDetailInfoResource {
         this.importDetailInfoService = importDetailInfoService;
     }
 
-    /**
+    /*
      * {@code POST  /import-detail-infos} : Create a new importDetailInfo.
      *
-     * @param importDetailInfo the importDetailInfo to create.
+     * @param importDetailInfoDto the importDetailInfo to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new importDetailInfo, or with status {@code 400 (Bad Request)} if the importDetailInfo has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/import-detail-infos")
-    public ResponseEntity<ImportDetailInfo> createImportDetailInfo(@RequestBody ImportDetailInfo importDetailInfo) throws URISyntaxException {
-        log.debug("REST request to save ImportDetailInfo : {}", importDetailInfo);
+    public ResponseEntity<ImportDetailInfo> createImportDetailInfo(@RequestBody ImportDetailInfoDTO importDetailInfoDTO) throws URISyntaxException {
+        log.debug("REST request to save ImportDetailInfo : {}", importDetailInfoDTO);
+
+        ImportDetailInfo importDetailInfo = importDetailInfoMapper.importDetailInfoDTOToImportDetailInfo(importDetailInfoDTO);
         if (importDetailInfo.getId() != null) {
             throw new BadRequestAlertException("A new importDetailInfo cannot already have an ID", ENTITY_NAME, "idexists");
         }
+      Product productImport =productRepository.findOneById(importDetailInfoDTO.getProductId());
+      importDetailInfo.setProduct(productImport);
+
+
+
 
         Product product = importDetailInfo.getProduct();
         importDetailInfo.setProductName(product.getProductName());
@@ -65,20 +82,36 @@ public class ImportDetailInfoResource {
         return ResponseEntity.created(new URI("/api/import-detail-infos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
+
     }
+
+
+
+//
+////    Product product = importDetailInfo.getProduct();
+////        importDetailInfo.setProductName(product.getProductName());
+////
+////    ImportDetailInfo result = importDetailInfoService.save(importDetailInfo);
+////        productService.importDetailBill(result);
+////
+
+
+
+
 
     /**
      * {@code PUT  /import-detail-infos} : Updates an existing importDetailInfo.
      *
-     * @param importDetailInfo the importDetailInfo to update.
+     * @param importDetailInfoDTO the importDetailInfo to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated importDetailInfo,
      * or with status {@code 400 (Bad Request)} if the importDetailInfo is not valid,
      * or with status {@code 500 (Internal Server Error)} if the importDetailInfo couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/import-detail-infos")
-    public ResponseEntity<ImportDetailInfo> updateImportDetailInfo(@RequestBody ImportDetailInfo importDetailInfo) throws URISyntaxException {
-        log.debug("REST request to update ImportDetailInfo : {}", importDetailInfo);
+    public ResponseEntity<ImportDetailInfo> updateImportDetailInfo(ImportDetailInfoDTO importDetailInfoDTO) throws URISyntaxException {
+        log.debug("REST request to update ImportDetailInfo : {}", importDetailInfoDTO);
+        ImportDetailInfo importDetailInfo = importDetailInfoMapper.importDetailInfoDTOToImportDetailInfo(importDetailInfoDTO);
         if (importDetailInfo.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }

@@ -1,6 +1,6 @@
 
 
-  import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit, Input } from '@angular/core';
   import { HttpResponse } from '@angular/common/http';
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   import { FormBuilder, Validators } from '@angular/forms';
@@ -27,12 +27,12 @@ import { OrderDetailInfoService } from 'app/entities/order-detail-info/order-det
 })
 export class OrderDetailInfoUpdateComponent implements OnInit {
     isSaving = false;
-  
+   
     orderinfos: IOrderInfo[] = [];
-  
     products: IProduct[] = [];
     orderDateDp: any;
-  
+    productId: any;
+    
     editForm = this.fb.group({
       id: [],
       productName: [],
@@ -43,6 +43,8 @@ export class OrderDetailInfoUpdateComponent implements OnInit {
       orderInfo: [],
       product: []
     });
+
+    @Input() public id: any;
   
     constructor(
       protected orderDetailInfoService: OrderDetailInfoService,
@@ -51,11 +53,11 @@ export class OrderDetailInfoUpdateComponent implements OnInit {
       protected activatedRoute: ActivatedRoute,
       private fb: FormBuilder
     ) {}
-  
-    ngOnInit(): void {
+   
+    ngOnInit(): void { 
+      this.productId = this.id;
       this.activatedRoute.data.subscribe(({ orderDetailInfo }) => {
-        // this.updateForm(orderDetailInfo);
-  
+    
         this.orderInfoService
           .query()
           .pipe(
@@ -75,19 +77,7 @@ export class OrderDetailInfoUpdateComponent implements OnInit {
           .subscribe((resBody: IProduct[]) => (this.products = resBody));
       });
     }
-  
-    // updateForm(orderDetailInfo: IOrderDetailInfo): void {
-    //   this.editForm.patchValue({
-    //     id: orderDetailInfo.id,
-    //     productName: orderDetailInfo.productName,
-    //     priceProduct: orderDetailInfo.priceProduct,
-    //     quantityOrder: orderDetailInfo.quantityOrder,
-    //     amount: orderDetailInfo.amount,
-    //     orderDate: orderDetailInfo.orderDate,
-    //     orderInfo: orderDetailInfo.orderInfo,
-    //     product: orderDetailInfo.product
-    //   });
-    // }
+
   
     previousState(): void {
       window.history.back();
@@ -97,11 +87,7 @@ export class OrderDetailInfoUpdateComponent implements OnInit {
       this.isSaving = true;
       const orderDetailInfo = this.createFromForm();
       this.subscribeToSaveResponse(this.orderDetailInfoService.create(orderDetailInfo));
-      // if (orderDetailInfo.id !== undefined) {
-      //   this.subscribeToSaveResponse(this.orderDetailInfoService.update(orderDetailInfo));
-      // } else {
-      //   this.subscribeToSaveResponse(this.orderDetailInfoService.create(orderDetailInfo));
-      // }
+     
     }
   
     private createFromForm(): IOrderDetailInfo {
@@ -114,7 +100,7 @@ export class OrderDetailInfoUpdateComponent implements OnInit {
         amount: this.editForm.get(['amount'])!.value,
         orderDate: this.editForm.get(['orderDate'])!.value,
         orderInfo: this.editForm.get(['orderInfo'])!.value,
-        product: this.editForm.get(['product'])!.value
+        product: this.editForm.get(['product'])!.value||this.productId
       };
     }
   

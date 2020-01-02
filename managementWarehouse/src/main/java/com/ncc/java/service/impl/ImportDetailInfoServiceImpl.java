@@ -1,5 +1,6 @@
 package com.ncc.java.service.impl;
 
+import com.ncc.java.domain.Product;
 import com.ncc.java.service.ImportDetailInfoService;
 import com.ncc.java.domain.ImportDetailInfo;
 import com.ncc.java.repository.ImportDetailInfoRepository;
@@ -47,6 +48,7 @@ public class ImportDetailInfoServiceImpl implements ImportDetailInfoService {
         Instant instant = Instant.ofEpochMilli(now.getTime());
         LocalDate localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
         importDetailInfo.setImportDate(localDate);
+
 
         return importDetailInfoRepository.save(importDetailInfo);
     }

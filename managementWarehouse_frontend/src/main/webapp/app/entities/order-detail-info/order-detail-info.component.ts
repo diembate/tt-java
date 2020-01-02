@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
@@ -20,7 +20,7 @@ export class OrderDetailInfoComponent implements OnInit, OnDestroy {
     protected orderDetailInfoService: OrderDetailInfoService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal
-  ) {}
+  ) { }
 
   loadAll(): void {
     this.orderDetailInfoService.query().subscribe((res: HttpResponse<IOrderDetailInfo[]>) => {

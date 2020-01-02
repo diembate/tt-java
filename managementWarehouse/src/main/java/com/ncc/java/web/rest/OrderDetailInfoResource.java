@@ -1,10 +1,13 @@
 package com.ncc.java.web.rest;
 
-import com.ncc.java.domain.ImportDetailInfo;
+
 import com.ncc.java.domain.OrderDetailInfo;
 import com.ncc.java.domain.Product;
+import com.ncc.java.repository.ProductRepository;
 import com.ncc.java.service.OrderDetailInfoService;
 import com.ncc.java.service.ProductService;
+import com.ncc.java.service.dto.OrderDetailInfoDTO;
+import com.ncc.java.service.mapper.OrderDetailInfoMapper;
 import com.ncc.java.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -29,8 +32,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class OrderDetailInfoResource {
+    @Autowired
+    OrderDetailInfoMapper orderDetailInfoMapper;
 @Autowired
     ProductService  productService;
+
+@Autowired
+    ProductRepository productRepository;
     private final Logger log = LoggerFactory.getLogger(OrderDetailInfoResource.class);
 
     private static final String ENTITY_NAME = "orderDetailInfo";
@@ -47,16 +55,20 @@ public class OrderDetailInfoResource {
     /**
      * {@code POST  /order-detail-infos} : Create a new orderDetailInfo.
      *
-     * @param orderDetailInfo the orderDetailInfo to create.
+     * @param orderDetailInfoDTO the orderDetailInfo to create.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new orderDetailInfo, or with status {@code 400 (Bad Request)} if the orderDetailInfo has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/order-detail-infos")
-    public ResponseEntity<OrderDetailInfo> createOrderDetailInfo(@RequestBody OrderDetailInfo orderDetailInfo) throws URISyntaxException {
-        log.debug("REST request to save OrderDetailInfo : {}", orderDetailInfo);
+    public ResponseEntity<OrderDetailInfo> createOrderDetailInfo(@RequestBody OrderDetailInfoDTO orderDetailInfoDTO) throws URISyntaxException {
+        log.debug("REST request to save OrderDetailInfo : {}", orderDetailInfoDTO);
+        OrderDetailInfo orderDetailInfo = orderDetailInfoMapper.orderDetailInfoDTOToOrderDetailInfo(orderDetailInfoDTO);
         if (orderDetailInfo.getId() != null) {
             throw new BadRequestAlertException("A new orderDetailInfo cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        Product productOrder =productRepository.findOneById(orderDetailInfoDTO.getProduct());
+        orderDetailInfo.setProduct(productOrder);
+
         Product product = orderDetailInfo.getProduct();
         BigDecimal itemCost  = BigDecimal.ZERO;
         itemCost  = product.getPriceProduct().multiply(new BigDecimal(orderDetailInfo.getQuantityOrder()));
