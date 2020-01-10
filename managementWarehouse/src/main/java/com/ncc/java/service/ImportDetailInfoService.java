@@ -1,6 +1,7 @@
 package com.ncc.java.service;
 
 import com.ncc.java.domain.ImportDetailInfo;
+import com.ncc.java.domain.Product;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,4 +41,5 @@ public interface ImportDetailInfoService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
 }

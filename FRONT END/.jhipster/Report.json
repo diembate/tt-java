@@ -1,0 +1,41 @@
+{
+    "name": "Report",
+    "fields": [
+        {
+            "fieldName": "productName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "quantityRemaining",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "orderQuantityOfProduct",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "report",
+            "relationshipName": "product"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "orderDetailInfo",
+            "otherEntityRelationshipName": "report",
+            "relationshipName": "orderDetailInfo"
+        }
+    ],
+    "changelogDate": "20200107044653",
+    "entityTableName": "report",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

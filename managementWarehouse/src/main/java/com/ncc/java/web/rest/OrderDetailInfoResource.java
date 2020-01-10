@@ -69,16 +69,8 @@ public class OrderDetailInfoResource {
         Product productOrder =productRepository.findOneById(orderDetailInfoDTO.getProduct());
         orderDetailInfo.setProduct(productOrder);
 
-        Product product = orderDetailInfo.getProduct();
-        BigDecimal itemCost  = BigDecimal.ZERO;
-        itemCost  = product.getPriceProduct().multiply(new BigDecimal(orderDetailInfo.getQuantityOrder()));
-        orderDetailInfo.setProductName(product.getProductName());
-        orderDetailInfo.setPriceProduct(product.getPriceProduct());
-        orderDetailInfo.setAmount(itemCost);
-
         OrderDetailInfo result = orderDetailInfoService.save(orderDetailInfo);
         productService.orderDetailBill(result);
-
 
 
         return ResponseEntity.created(new URI("/api/order-detail-infos/" + result.getId()))

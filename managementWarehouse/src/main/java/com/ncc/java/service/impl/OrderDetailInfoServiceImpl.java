@@ -1,5 +1,6 @@
 package com.ncc.java.service.impl;
 
+import com.ncc.java.domain.Product;
 import com.ncc.java.service.OrderDetailInfoService;
 import com.ncc.java.domain.OrderDetailInfo;
 import com.ncc.java.repository.OrderDetailInfoRepository;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,10 +44,21 @@ public class OrderDetailInfoServiceImpl implements OrderDetailInfoService {
     @Override
     public OrderDetailInfo save(OrderDetailInfo orderDetailInfo) {
         log.debug("Request to save OrderDetailInfo : {}", orderDetailInfo);
+        Product product = orderDetailInfo.getProduct();
+        //gia san pham
+        orderDetailInfo.setPriceProduct(product.getPriceProduct());
+        //tinh tien order = gia sanpham* so luong san pham
+        BigDecimal itemCost  = BigDecimal.ZERO;
+        itemCost  = product.getPriceProduct().multiply(new BigDecimal(orderDetailInfo.getQuantityOrder()));
+        orderDetailInfo.setAmount(itemCost);
+        //ten san pham
+        orderDetailInfo.setProductName(product.getProductName());
+        //tao thoi gian hien tai
         Date now = Calendar.getInstance().getTime();
         Instant instant = Instant.ofEpochMilli(now.getTime());
         LocalDate localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
         orderDetailInfo.setOrderDate(localDate);
+        // save
         return orderDetailInfoRepository.save(orderDetailInfo);
     }
 

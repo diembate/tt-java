@@ -11,6 +11,7 @@ import { OrderDetailInfoUpdateComponent } from './order/order-detail-info-update
 import { ImportDetailInfoUpdateComponent } from './import/import-detail-info-update/import-detail-info-update.component';
 
 
+
 @NgModule({
   imports: [ManagementWarehouseSharedModule, RouterModule.forChild(productRoute)],
   declarations: [ProductComponent, ProductDetailComponent, ProductUpdateComponent, ProductDeleteDialogComponent, OrderDetailInfoUpdateComponent,ImportDetailInfoUpdateComponent],

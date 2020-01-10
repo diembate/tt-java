@@ -4,8 +4,6 @@ import com.ncc.java.domain.ImportDetailInfo;
 import com.ncc.java.domain.OrderDetailInfo;
 import com.ncc.java.domain.Product;
 import com.ncc.java.repository.ProductRepository;
-import com.ncc.java.service.ImportDetailInfoService;
-import com.ncc.java.service.OrderDetailInfoService;
 import com.ncc.java.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -40,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     public Product save(Product product) {
         log.debug("Request to save OrderDetailInfo : {}", product);
         ImportDetailInfo importDetailInfo ;
-//
+
         return productRepository.save(product);
     }
 
@@ -95,5 +94,8 @@ public class ProductServiceImpl implements ProductService {
         product.setQuantityProduct( product.getQuantityProduct()+importDetailInfo.getQuantityImport());
         productRepository.save(product);
     }
+
+
+
 }
 

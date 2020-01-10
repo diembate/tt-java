@@ -32,12 +32,11 @@ import java.util.Optional;
 public class ImportDetailInfoResource {
     @Autowired
     ProductService productService;
-
+    @Autowired
+    ProductRepository productRepository;
     @Autowired
     ImportDetailInfoMapper importDetailInfoMapper;
 
-    @Autowired
-    ProductRepository productRepository;
 
     private final Logger log = LoggerFactory.getLogger(ImportDetailInfoResource.class);
 
@@ -67,14 +66,9 @@ public class ImportDetailInfoResource {
         if (importDetailInfo.getId() != null) {
             throw new BadRequestAlertException("A new importDetailInfo cannot already have an ID", ENTITY_NAME, "idexists");
         }
-      Product productImport =productRepository.findOneById(importDetailInfoDTO.getProductId());
-      importDetailInfo.setProduct(productImport);
 
-
-
-
-        Product product = importDetailInfo.getProduct();
-        importDetailInfo.setProductName(product.getProductName());
+        Product productImport =productRepository.findOneById(importDetailInfoDTO.getProductId());
+        importDetailInfo.setProduct(productImport);
 
         ImportDetailInfo result = importDetailInfoService.save(importDetailInfo);
         productService.importDetailBill(result);
@@ -87,13 +81,6 @@ public class ImportDetailInfoResource {
 
 
 
-//
-////    Product product = importDetailInfo.getProduct();
-////        importDetailInfo.setProductName(product.getProductName());
-////
-////    ImportDetailInfo result = importDetailInfoService.save(importDetailInfo);
-////        productService.importDetailBill(result);
-////
 
 
 

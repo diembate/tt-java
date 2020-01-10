@@ -1,0 +1,56 @@
+{
+    "name": "OrderDetailInfo",
+    "fields": [
+        {
+            "fieldName": "productName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "priceProduct",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "quantityOrder",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "orderDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "orderInfo",
+            "otherEntityRelationshipName": "orderDetailInfo"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "orderDetailInfo",
+            "relationshipName": "product",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "report",
+            "otherEntityRelationshipName": "orderDetailInfo",
+            "relationshipName": "report",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200107044654",
+    "entityTableName": "order_detail_info",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

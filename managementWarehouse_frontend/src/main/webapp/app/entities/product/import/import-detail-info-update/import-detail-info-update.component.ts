@@ -60,9 +60,8 @@ export class ImportDetailInfoUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.productId = this.id;
-    // this.editForm.patchValue( {id : this.id});
     this.activatedRoute.data.subscribe(({ importDetailInfo }) => {
-      // console.log(this.id);
+    
      
 
       this.importInfoService
@@ -85,19 +84,18 @@ export class ImportDetailInfoUpdateComponent implements OnInit {
     });
   }
  
+  previousState(): void {
+    window.history.back();
+  }
 
   save(): void {
     this.isSaving = true;
     const importDetailInfo = this.createFromForm();
-  //  console.log( importDetailInfo);
     this.subscribeToSaveResponse(this.importDetailInfoService.create(importDetailInfo));
  
   }
 
 
-  previousState(): void {
-    window.history.back();
-  }
   
 
 

@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="report">
+            <h2><span>Report</span> {{report.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Product Name</span></dt>
+                <dd>
+                    <span>{{report.productName}}</span>
+                </dd>
+                <dt><span>Quantity Remaining</span></dt>
+                <dd>
+                    <span>{{report.quantityRemaining}}</span>
+                </dd>
+                <dt><span>Total Order Quantity</span></dt>
+                <dd>
+                    <span>{{report.totalOrderQuantity}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+        </div>
+    </div>
+</div>

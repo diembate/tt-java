@@ -1,0 +1,50 @@
+{
+    "name": "Product",
+    "fields": [
+        {
+            "fieldName": "productName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "priceProduct",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "quantityProduct",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "category",
+            "otherEntityRelationshipName": "product",
+            "relationshipName": "category",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "brand",
+            "otherEntityRelationshipName": "product",
+            "relationshipName": "brand",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "report",
+            "otherEntityRelationshipName": "product",
+            "relationshipName": "report",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200107044649",
+    "entityTableName": "product",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

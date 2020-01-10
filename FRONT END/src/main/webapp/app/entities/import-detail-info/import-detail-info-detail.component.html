@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="importDetailInfo">
+            <h2><span jhiTranslate="warehouseApp.importDetailInfo.detail.title">Import Detail Info</span> {{importDetailInfo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="warehouseApp.importDetailInfo.productName">Product Name</span></dt>
+                <dd>
+                    <span>{{importDetailInfo.productName}}</span>
+                </dd>
+                <dt><span jhiTranslate="warehouseApp.importDetailInfo.quantityImport">Quantity Import</span></dt>
+                <dd>
+                    <span>{{importDetailInfo.quantityImport}}</span>
+                </dd>
+                <dt><span jhiTranslate="warehouseApp.importDetailInfo.importDate">Import Date</span></dt>
+                <dd>
+                    <span>{{importDetailInfo.importDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="warehouseApp.importDetailInfo.priceImport">Price Import</span></dt>
+                <dd>
+                    <span>{{importDetailInfo.priceImport}}</span>
+                </dd>
+                <dt><span jhiTranslate="warehouseApp.importDetailInfo.importInfo">Import Info</span></dt>
+                <dd>
+                    <div *ngIf="importDetailInfo.importInfoId">
+                        <a [routerLink]="['/import-info', importDetailInfo.importInfoId, 'view']">{{importDetailInfo.importInfoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="warehouseApp.importDetailInfo.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="importDetailInfo.productId">
+                        <a [routerLink]="['/product', importDetailInfo.productId, 'view']">{{importDetailInfo.productId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/import-detail-info', importDetailInfo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

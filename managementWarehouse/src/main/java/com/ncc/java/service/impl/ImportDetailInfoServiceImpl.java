@@ -1,11 +1,14 @@
 package com.ncc.java.service.impl;
 
 import com.ncc.java.domain.Product;
+
 import com.ncc.java.service.ImportDetailInfoService;
 import com.ncc.java.domain.ImportDetailInfo;
 import com.ncc.java.repository.ImportDetailInfoRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +37,11 @@ public class ImportDetailInfoServiceImpl implements ImportDetailInfoService {
         this.importDetailInfoRepository = importDetailInfoRepository;
     }
 
+
+//    @Autowired
+//    ProductRepository productRepository;
+//    @Autowired
+//   ImportDetailInfo importDetailInfo
     /**
      * Save a importDetailInfo.
      *
@@ -43,6 +51,11 @@ public class ImportDetailInfoServiceImpl implements ImportDetailInfoService {
     @Override
     public ImportDetailInfo save(ImportDetailInfo importDetailInfo) {
         log.debug("Request to save ImportDetailInfo : {}", importDetailInfo);
+//        ImportDetailInfoDTO importDetailInfoDTO = new ImportDetailInfoDTO();
+
+
+        Product product = importDetailInfo.getProduct();
+        importDetailInfo.setProductName(product.getProductName());
 
         Date now = Calendar.getInstance().getTime();
         Instant instant = Instant.ofEpochMilli(now.getTime());
@@ -84,9 +97,10 @@ public class ImportDetailInfoServiceImpl implements ImportDetailInfoService {
      *
      * @param id the id of the entity.
      */
-    @Override
+   @Override
     public void delete(Long id) {
         log.debug("Request to delete ImportDetailInfo : {}", id);
         importDetailInfoRepository.deleteById(id);
     }
+
 }

@@ -15,6 +15,7 @@
         "importInfo": "Import Info",
         "orderDetailInfo": "Order Detail Info",
         "orderInfo": "Order Info",
+        "report": "Report",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

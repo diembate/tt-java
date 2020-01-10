@@ -1,0 +1,27 @@
+{
+    "name": "Brand",
+    "fields": [
+        {
+            "fieldName": "brandName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "brand",
+            "relationshipName": "product"
+        }
+    ],
+    "changelogDate": "20200107044647",
+    "entityTableName": "brand",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

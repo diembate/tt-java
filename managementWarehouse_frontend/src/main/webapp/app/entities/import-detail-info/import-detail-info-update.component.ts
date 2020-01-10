@@ -78,7 +78,7 @@ export class ImportDetailInfoUpdateComponent implements OnInit {
       importDate: importDetailInfo.importDate,
       priceImport: importDetailInfo.priceImport,
       importInfo: importDetailInfo.importInfo,
-      product: importDetailInfo.product
+      product: importDetailInfo.productId
     });
   }
 
@@ -105,7 +105,7 @@ export class ImportDetailInfoUpdateComponent implements OnInit {
       importDate: this.editForm.get(['importDate'])!.value,
       priceImport: this.editForm.get(['priceImport'])!.value,
       importInfo: this.editForm.get(['importInfo'])!.value,
-      product: this.editForm.get(['product'])!.value
+      productId: this.editForm.get(['product'])!.value
     };
   }
 

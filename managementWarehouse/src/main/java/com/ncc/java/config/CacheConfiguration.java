@@ -58,6 +58,12 @@ public class CacheConfiguration {
             createCache(cm, com.ncc.java.domain.OrderDetailInfo.class.getName());
             createCache(cm, com.ncc.java.domain.OrderInfo.class.getName());
             createCache(cm, com.ncc.java.domain.OrderInfo.class.getName() + ".orderDetailInfos");
+
+            createCache(cm, com.ncc.java.domain.Report.class.getName());
+            createCache(cm, com.ncc.java.domain.Report.class.getName() + ".withProducts");
+            createCache(cm, com.ncc.java.domain.Report.class.getName() + ".withOrders");
+            createCache(cm, com.ncc.java.domain.Report.class.getName() + ".products");
+            createCache(cm, com.ncc.java.domain.Report.class.getName() + ".orderDetailInfos");
             // jhipster-needle-ehcache-add-entry
         };
     }

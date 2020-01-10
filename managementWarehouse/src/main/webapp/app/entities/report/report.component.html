@@ -1,0 +1,42 @@
+<div>
+    <h2 id="page-heading">
+        <span>Reports</span>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="reports?.length === 0">
+        <span>No reports found</span>
+    </div>
+    <div class="table-responsive" *ngIf="reports?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span>ID</span></th>
+            <th scope="col" ><span>Product Name</span></th>
+            <th scope="col" ><span>Quantity Remaining</span></th>
+            <th scope="col" ><span>Total Order Quantity</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let report of reports ;trackBy: trackId">
+                <td><a [routerLink]="['/report', report.id, 'view' ]">{{report.id}}</a></td>
+                <td>{{report.productName}}</td>
+                <td>{{report.quantityRemaining}}</td>
+                <td>{{report.totalOrderQuantity}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/report', report.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

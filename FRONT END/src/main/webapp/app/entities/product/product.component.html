@@ -1,0 +1,85 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="warehouseApp.product.home.title">Products</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product" [routerLink]="['/product/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="warehouseApp.product.home.createLabel">
+            Create a new Product
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="products?.length === 0">
+        <span jhiTranslate="warehouseApp.product.home.notFound">No products found</span>
+    </div>
+    <div class="table-responsive" *ngIf="products?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="warehouseApp.product.productName">Product Name</span></th>
+            <th scope="col" ><span jhiTranslate="warehouseApp.product.priceProduct">Price Product</span></th>
+            <th scope="col" ><span jhiTranslate="warehouseApp.product.quantityProduct">Quantity Product</span></th>
+            <th scope="col" ><span jhiTranslate="warehouseApp.product.category">Category</span></th>
+            <th scope="col" ><span jhiTranslate="warehouseApp.product.brand">Brand</span></th>
+            <th scope="col" ><span jhiTranslate="warehouseApp.product.report">Report</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of products ;trackBy: trackId">
+                <td><a [routerLink]="['/product', product.id, 'view' ]">{{product.id}}</a></td>
+                <td>{{product.productName}}</td>
+                <td>{{product.priceProduct}}</td>
+                <td>{{product.quantityProduct}}</td>
+                <td>
+                    <div *ngIf="product.categoryId">
+                        <a [routerLink]="['/category', product.categoryId , 'view' ]" >{{product.categoryId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="product.brandId">
+                        <a [routerLink]="['/brand', product.brandId , 'view' ]" >{{product.brandId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="product.reportId">
+                        <a [routerLink]="['/report', product.reportId , 'view' ]" >{{product.reportId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button (click)="import(product)" >
+                            <fa-icon [icon]="'plus'"></fa-icon>
+                            <span class="d-none d-md-inline">Import</span>
+                        </button>
+                        <button (click)="order(product)" class="btn btn-warning">
+                            <fa-icon [icon]="'minus'"></fa-icon>
+                            <span class="d-none d-md-inline">Order</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/product', product.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/product', product.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(product)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
